@@ -91,6 +91,13 @@ public class AndroidSdkRepositoryFunction extends AndroidRepositoryFunction {
     if (environ == null) {
       return null;
     }
+    // This prints out: "ANDROID_HOME: null",
+    // Although in the terminal, I get a value for this variable:
+    // $ echo $ANDROID_HOME
+    // /home/oferb/Android/Sdk
+    for (String key : environ.keySet()) {
+      System.out.println(key + ": " + environ.get(key));
+    }
     prepareLocalRepositorySymlinkTree(rule, outputDirectory);
     WorkspaceAttributeMapper attributes = WorkspaceAttributeMapper.of(rule);
     FileSystem fs = directories.getOutputBase().getFileSystem();
